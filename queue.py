@@ -38,12 +38,13 @@ class Queue():
         if self.is_empty():
             return False
         else:
-            node = self.queue
+            node = self.get_front()
             last = Node()
             if node.get_next() != None:
-                while node.get_next() != None:
-                    last = node
-                    node = node.get_next()
-                last.set_next(None)
+                del node
+                return True
+            while node.get_next() != None:
+                last = node
+            last.next = None
             del node
             return True

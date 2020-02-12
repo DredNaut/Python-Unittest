@@ -1,50 +1,48 @@
 from node import Node
 
-class LinkedList():
+class Stack():
 
     def __init__(self):
-        self.list = None
+        self.stack = None
 
-    def get_head(self):
+    def get_top(self):
         if self.is_empty():
             return None
         else:
-            return self.list
+            return self.stack
 
     def is_empty(self):
-        return True if (self.list == None) else False
+        return True if (self.stack == None) else False
 
     def get_last_node(self):
         if self.is_empty():
             return None
         else:
-            node = self.list
+            node = self.stack
             while node.get_next() != None:
                 node = node.get_next()
             return node
 
-    def append(self,value):
+    def push(self,value):
         if self.is_empty():
-            self.list = Node()
-            self.list.set_value(value)
+            self.stack = Node()
+            self.stack.set_value(value)
             return True
         else:
             new = Node()
             new.set_value(value)
-            self.get_last_node().set_next(new)
+            new.set_next(self.get_top())
             return True
 
-    def remove(self,value):
+    def pop(self,value):
         if self.is_empty():
             return False
         else:
-            node = self.list
+            node = self.stack
             last = Node()
-            while node.get_value() != value:
-                if node.get_next() == None:
-                    return False
-                last = node
-                node = node.get_next()
-            last.set_next(node.get_next())
+            if node.get_next() == None:
+                del node
+                return True
+            stack = node.get_next()
             del node
             return True
