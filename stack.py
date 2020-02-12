@@ -32,6 +32,7 @@ class Stack():
             new = Node()
             new.set_value(value)
             new.set_next(self.get_top())
+            self.stack = new
             return True
 
     def pop(self,value):

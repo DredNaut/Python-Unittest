@@ -27,11 +27,13 @@ class Queue():
         if self.is_empty():
             self.queue = Node()
             self.queue.set_value(value)
+            self.queue.set_next(None)
             return True
         else:
             new = Node()
             new.set_value(value)
             new.set_next(self.get_back())
+            self.queue = new
             return True
 
     def dequeue(self,value):
